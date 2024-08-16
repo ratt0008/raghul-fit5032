@@ -6,6 +6,7 @@ import Form from './components/Form.vue';
 </script>
 
 <template>
+<Form />
   <!-- <TheWelcome /> -->
   <!-- <JSON></JSON> -->
   <!-- <div class="form">
@@ -31,7 +32,6 @@ import Form from './components/Form.vue';
           </select>
       </form> -->
   <!-- </div> --> 
-  <Form></Form>
   
 </template>
 

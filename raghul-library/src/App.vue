@@ -1,65 +1,32 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-import JSON from './components/JSON.vue'
-import Form from './components/Form.vue';
+import JSONLab from './components/JSONLab.vue'
+import BHeader from './components/BHeader.vue'
+// import LibraryRegistrationForm from './views/HomeView.vue'
 </script>
 
 <template>
-<Form />
-  <!-- <TheWelcome /> -->
-  <!-- <JSON></JSON> -->
-  <!-- <div class="form">
-  <h1>User Information Form / Credentials</h1>
-      <! <form>
-          <label for="username">Username:</label><br>
-          <input type="text" id="username" name="username"><br>
-          
-          <label for="password">Password:</label><br>
-          <input type="password" id="password" name="password"><br>
-          
-          <label for="isAustralian">Australian Resident?</label><br>
-          <input type="checkbox" id="isAustralian" name="isAustralian"><br>
-          
-          <label for="reason">Reason For Joining:</label><br>
-          <textarea id="reason" name="reason" rows="3"></textarea><br>
-          
-          <label for="gender">Gender</label><br>
-          <select id="gender">
-              <option value="female">Female</option>
-              <option value="male">Male</option>
-              <option value="other">Other</option>
-          </select>
-      </form> -->
-  <!-- </div> --> 
-  
+  <header>
+    <BHeader />
+  </header>
+
+  <main class="container mt-12">
+    <!-- <LibraryRegistrationForm /> -->
+    <!-- <JSONLab /> -->
+    <router-view></router-view>
+  </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style>
+.container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 80vw;
+  margin: 0 auto;
+  padding: 20px;
+  /* background-color: #e0bfbf; */
+  border-radius: 10px;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
+
+
+

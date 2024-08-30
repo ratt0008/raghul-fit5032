@@ -17,6 +17,9 @@ import BHeader from './components/BHeader.vue'
 </template>
 
 <style>
+
+@import 'primeicons/primeicons.css';
+
 .container {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 80vw;

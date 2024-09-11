@@ -31,9 +31,11 @@ export default {
     const handleLogin = () => {
       const hardcodedUsername = 'admin';
       const hardcodedPassword = 'password';
+      const hardcodedRole = 'admin';
 
       if (username.value === hardcodedUsername && password.value === hardcodedPassword) {
         localStorage.setItem('isAuthenticated', 'true');
+        localStorage.setItem('role', 'admin');
         router.push({ name: 'About' });
       } else {
         loginError.value = true;

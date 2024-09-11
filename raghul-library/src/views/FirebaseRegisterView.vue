@@ -8,16 +8,25 @@
 <script setup>
 import { ref } from "vue"
 import {getAuth, createUserWithEmailAndPassword} from "firebase/auth"
+import { getFirestore, doc, setDoc } from "firebase/firestore"
 import {useRouter} from "vue-router"
 const email = ref ("")
 const password = ref("")
+const role = ref("user")
 const router = useRouter()
 const auth = getAuth()
+const db = getFirestore()
 const register = () => {
     createUserWithEmailAndPassword(auth, email.value, password.value)
     .then((data) => {
-        console.log("Firebase Register Successful!")
-        router.push("/FireLogin")
+        const uid = data.user.uid
+        setDoc(doc(db, "users", uid), {
+            email: email.value,
+            role: role.value
+        }).then(() => {
+            console.log("Firebase Register Successful!")
+            router.push("/FireLogin")
+        })
     }).catch((error) => {
         console.log(error.code);
     })

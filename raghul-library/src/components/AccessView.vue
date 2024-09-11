@@ -17,6 +17,8 @@ export default {
 
     const handleLogout = () => {
       localStorage.removeItem('isAuthenticated');
+      localStorage.removeItem('role');
+      localStorage.removeItem('userRole');
       router.push({ name: 'Login' });
     };
 

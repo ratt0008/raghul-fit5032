@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Books with ISBN</h1>
+        <h1>Books with ISBN > 1000</h1>
         <ul>
             <li v-for="book in books" :key="book.id">
             {{ book.name }} - ISBN: {{ book.isbn }}</li>

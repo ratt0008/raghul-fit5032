@@ -24,12 +24,25 @@
     <input type="text" v-model="bookName" id="bookName" required />
     <button @click="deleteBook">Delete Book</button>
   </div>
+
+  <div>
+    <h1>Get Books</h1>
+    <label for="getBookName">Book Name (for filter):</label>
+    <input type="text" v-model="getBookName" id="getBookName" required/>
+    <label for="getLimit">Result Limit</label>
+    <input type="number" v-model="getLimit" id="getLimit" />
+    <button @click="getBooks">Get Books</button>
+
+    <ul>
+      <li v-for="book in books" :key="book.id">{{ book.name }} (ISBN: {{ book.isbn }})</li>
+    </ul>
+  </div>
 </template>
 
 <script>
 import { ref } from 'vue';
 import db from '../firebase/init.js';
-import { collection, addDoc, doc, deleteDoc, getDocs, query, where } from 'firebase/firestore';
+import { collection, addDoc, doc, deleteDoc, getDocs, query, where, orderBy, limit } from 'firebase/firestore';
 import BookList from '../components/BookList.vue';
 
 export default {
@@ -37,6 +50,9 @@ export default {
     const isbn = ref('');
     const name = ref('');
     const bookName = ref('');
+    const getBookName = ref('');
+    const getLimit = ref(10);
+    const books = ref([]);
 
     const addBook = async () => {
       try {
@@ -77,12 +93,44 @@ export default {
       }
     };
 
+    const getBooks = async () => {
+      try {
+        let filterBookQuery = collection(db, 'books');
+
+        if (getBookName.value) {
+          filterBookQuery = query(filterBookQuery, where('name', '==', getBookName.value));
+        }
+
+        filterBookQuery = query(filterBookQuery, orderBy('name'), limit(Number(getLimit.value)));
+
+        const querySnapshot = await getDocs(filterBookQuery);
+        books.value = [];
+
+        querySnapshot.forEach((docSnap) => {
+          books.value.push({
+            id: docSnap.id,
+            ...docSnap.data()
+          });
+        });
+
+        if (books.value.length === 0) {
+          alert('No books found!');
+        }
+      } catch (error) {
+        console.error('Error fetching books: ', error);
+      }
+    };
+
     return {
       isbn,
       name,
-      addBook,
       bookName,
-      deleteBook
+      getBookName,
+      getLimit,
+      books,
+      addBook,
+      deleteBook,
+      getBooks
     };
   },
   components: {

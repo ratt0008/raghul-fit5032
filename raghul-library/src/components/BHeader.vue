@@ -13,9 +13,6 @@
           <router-link to="/about" class="nav-link" active-class="active">About</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/login" class="nav-link" active-class="active">Login</router-link>
-        </li>
-        <li class="nav-item">
           <router-link to="/Firelogin" class="nav-link" active-class="active">Firelogin</router-link>
         </li>
         <li class="nav-item">

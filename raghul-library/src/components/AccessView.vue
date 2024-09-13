@@ -19,7 +19,7 @@ export default {
       localStorage.removeItem('isAuthenticated');
       localStorage.removeItem('role');
       localStorage.removeItem('userRole');
-      router.push({ name: 'Login' });
+      router.push('/Firelogin');
     };
 
     return {

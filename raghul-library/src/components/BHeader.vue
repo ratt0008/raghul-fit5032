@@ -21,6 +21,9 @@
         <li class="nav-item">
           <router-link to="/Fireregister" class="nav-link" active-class="active">FireRegister</router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/GetBookCount" class="nav-link" active-class="active">Get Book Count</router-link>
+        </li>
       </ul>
     </header>
   </div>

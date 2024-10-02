@@ -21,3 +21,28 @@ exports.countBooks = onRequest((req, res) => {
     }
   });
 });
+
+exports.addBook = onRequest((req, res) => {
+  cors(req, res, async () => {
+    try {
+      const {isbn, name} = req.body;
+      if (!isbn || !name) {
+        return res.status(400).send("Missing isbn or name");
+      }
+
+      const capitalizedIsbn = String(isbn).toUpperCase();
+      const capitalizedName = name.toUpperCase();
+      logger.info("Adding a new book to Firestore...");
+
+      await admin.firestore().collection("books").add({
+        isbn: capitalizedIsbn,
+        name: capitalizedName,
+      });
+
+      res.status(200).send({message: "Book added successfully"});
+    } catch (error) {
+      logger.error("Error adding book:", error);
+      res.status(500).send("Error adding book");
+    }
+  });
+});

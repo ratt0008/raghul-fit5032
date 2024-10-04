@@ -46,3 +46,17 @@ exports.addBook = onRequest((req, res) => {
     }
   });
 });
+
+exports.getAllBooks = onRequest((req, res) => {
+  cors(req, res, async () => {
+    try {
+      const booksSnapshot = await admin.firestore().collection("books").get();
+      const books = booksSnapshot.docs.map((doc) => doc.data());
+
+      res.status(200).send(books);
+    } catch (error) {
+      logger.error("Error retrieving books:", error);
+      res.status(500).send("Error retrieving books");
+    }
+  });
+});

@@ -27,6 +27,12 @@
         <li class="nav-item">
           <router-link to="/AddBookFunction" class="nav-link" active-class="active">Add Book Function</router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/GetWeather" class="nav-link" active-class="active">Weather</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/CountBookAPI" class="nav-link" active-class="active">Count Book API</router-link>
+        </li>
       </ul>
     </header>
   </div>

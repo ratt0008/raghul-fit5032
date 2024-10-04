@@ -1,23 +1,27 @@
 <script setup>
-import JSONLab from './components/JSONLab.vue'
-import BHeader from './components/BHeader.vue'
-// import LibraryRegistrationForm from './views/HomeView.vue'
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';  // Import the useRoute hook
+import BHeader from './components/BHeader.vue';
+import CountBookAPI from "./views/CountBookAPI.vue";
+
+// Use the route to determine whether to show the header
+const route = useRoute();
+const showHeader = computed(() => route.name !== 'CountBookAPI'); 
 </script>
 
 <template>
-  <header>
+  <!-- Conditionally show BHeader based on the route -->
+  <header v-if="showHeader">
     <BHeader />
   </header>
 
   <main class="container mt-12">
-    <!-- <LibraryRegistrationForm /> -->
-    <!-- <JSONLab /> -->
+    <!-- Router view to render components based on the route -->
     <router-view></router-view>
   </main>
 </template>
 
 <style>
-
 @import 'primeicons/primeicons.css';
 
 .container {
@@ -25,11 +29,6 @@ import BHeader from './components/BHeader.vue'
   max-width: 80vw;
   margin: 0 auto;
   padding: 20px;
-  /* background-color: #e0bfbf; */
   border-radius: 10px;
 }
-
 </style>
-
-
-

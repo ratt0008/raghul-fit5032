@@ -17,6 +17,6 @@ export default defineConfig({
   },
   // Configure base path for production
   base: process.env.NODE_ENV === 'production'
-    ? '/raghul-fit5032/raghul-library/'  // Correct path for GitHub Pages
+    ? '/raghul-library/'
     : '/',
 })

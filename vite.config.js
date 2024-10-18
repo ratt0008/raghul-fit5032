@@ -19,6 +19,6 @@ export default defineConfig({
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/raghul-fit5032/raghul-library/'
+    ? '/raghul-fit5032/raghul-fit5032/'
     : '/'
 }

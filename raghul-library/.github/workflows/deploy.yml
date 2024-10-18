@@ -1,34 +1,33 @@
-name: Deploy to GitHub Pages
+name: Deploy Vue.js App
 
 on:
   push:
     branches:
-      - main
+      - main  # Trigger deployment when changes are pushed to the main branch
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+    - name: Checkout the code
+      uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
       with:
-        node-version: '20'
+        node-version: '18'
 
     - name: Install dependencies
-      run: npm ci
+      run: npm install
+      working-directory: ./raghul-library  # Path to your Vue.js project folder
 
-    - name: Build
+    - name: Build the project
       run: npm run build
+      working-directory: ./raghul-library
 
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@4.1.4
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        branch: gh-pages
-        folder: dist
-
-permissions:
-  contents: write
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./raghul-library/dist  # Path to the build output folder

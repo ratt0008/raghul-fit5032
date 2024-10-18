@@ -20,15 +20,15 @@ jobs:
 
     - name: Install dependencies
       run: npm ci
-      working-directory: ./raghul-library  # Ensure the correct project folder
 
     - name: Build
       run: npm run build
-      working-directory: ./raghul-library  # Ensure the correct project folder
 
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@v4
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}  # Ensure the token is set correctly
-        branch: gh-pages  # Specify the branch to deploy to
-        folder: ./raghul-library/dist  # Ensure correct folder for deployment
+        branch: gh-pages
+        folder: dist
+
+permissions:
+  contents: write

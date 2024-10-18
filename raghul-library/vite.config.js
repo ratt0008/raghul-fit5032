@@ -15,8 +15,4 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  // Configure base path for production
-  base: process.env.NODE_ENV === 'production'
-    ? '/raghul-fit5032/'  // Correct path for GitHub Pages
-    : '/',
 })
